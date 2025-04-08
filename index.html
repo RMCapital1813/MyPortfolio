@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RM Capital - Dual Strategy Wealth Growth Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #111111;
+            --secondary-dark: #1a1a1a;
+            --accent-gold: #d4af37;
+            --accent-dark-green: #1a5d1a;
+            --accent-green: #2e8b57;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gold-text {
+            color: var(--accent-gold);
+        }
+        
+        .green-text {
+            color: var(--accent-green);
+        }
+        
+        .section {
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gold-gradient-btn {
+            background: linear-gradient(45deg, var(--accent-gold), #ffd700);
+            color: var(--primary-dark);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .gold-gradient-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .green-gradient-btn {
+            background: linear-gradient(45deg, var(--accent-dark-green), var(--accent-green));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .green-gradient-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 139, 87, 0.5);
+        }
+        
+        .dark-card {
+            background-color: var(--secondary-dark);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .dark-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+        
+        .gold-border {
+            border: 1px solid var(--accent-gold);
+        }
+        
+        .green-border {
+            border: 1px solid var(--accent-green);
+        }
+        
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-gold);
+            opacity: 0.4;
+            border-radius: 50%;
+            animation: float 25s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .finance-symbol {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(46, 139, 87, 0.1);
+            z-index: 1;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quote-box {
+            position: relative;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 70px;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -40px;
+            left: -20px;
+            z-index: 1;
+        }
+        
+        .navbar {
+            background-color: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .strategy-box {
+            position: relative;
+            padding-top: 20px;
+        }
+        
+        .strategy-box::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-green));
+            bottom: -15px;
+            left: 0;
+            border-radius: 10px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            margin-top: 10px;
+            display: none;
+            padding-left: 20px;
+            border-left: 2px solid var(--accent-gold);
+        }
+        
+        .blog-card {
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: var(--secondary-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-card img {
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .custom-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 12px 15px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .custom-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-green));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: var(--primary-dark);
+            border: 4px solid var(--accent-gold);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--secondary-dark);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+            }
+
+            .left::after, .right::after {
+                left: 18px;
+            }
+
+            .right {
+                left: 0;
+            }
+        }
+        
+        /* Added spacing between navbar and hero section */
+        #home {
+            padding-top: 150px; /* Increased from 80px to add ~70px more space */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full z-50 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="flex items-center">
+                <img src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_cd1a4a6f-69f2-4613-bf9b-c31aebf75535" alt="RM Capital Logo" class="h-16">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-gold-text transition duration-300">Home</a>
+                <a href="#about" class="text-white hover:text-gold-text transition duration-300">About</a>
+                <a href="#strategy" class="text-white hover:text-gold-text transition duration-300">Strategy</a>
+                <a href="#opportunities" class="text-white hover:text-gold-text transition duration-300">Opportunities</a>
+                <a href="#contact" class="text-white hover:text-gold-text transition duration-300">Contact</a>
+                <a href="#faq" class="text-white hover:text-gold-text transition duration-300">FAQ</a>
+                <a href="#insights" class="text-white hover:text-gold-text transition duration-300">Insights</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center hidden">
+        <button id="close-menu" class="absolute top-6 right-6 text-white focus:outline-none">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="#home" class="text-white text-xl hover:text-gold-text transition duration-300">Home</a>
+            <a href="#about" class="text-white text-xl hover:text-gold-text transition duration-300">About</a>
+            <a href="#strategy" class="text-white text-xl hover:text-gold-text transition duration-300">Strategy</a>
+            <a href="#opportunities" class="text-white text-xl hover:text-gold-text transition duration-300">Opportunities</a>
+            <a href="#contact" class="text-white text-xl hover:text-gold-text transition duration-300">Contact</a>
+            <a href="#faq" class="text-white text-xl hover:text-gold-text transition duration-300">FAQ</a>
+            <a href="#insights" class="text-white text-xl hover:text-gold-text transition duration-300">Insights</a>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/918125023515" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Home Section -->
+    <section id="home" class="section min-h-screen flex items-center">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="finance-symbol" style="top: 15%; left: 10%;">₹</div>
+        <div class="finance-symbol" style="top: 40%; right: 15%;">$</div>
+        <div class="finance-symbol" style="bottom: 20%; left: 20%;">€</div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        Your Capital, Two Strategies. <span class="gold-text">One Goal — Growth Without Risk.</span>
+                    </h1>
+                    <p class="text-lg mb-8 text-gray-300">
+                        RM Capital blends low-risk option trading with high-reward forex strategies to help you build wealth without effort.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="gold-gradient-btn">Schedule a Call</a>
+                        <a href="#strategy" class="green-gradient-btn">Learn More</a>
+                    </div>
+                    <div class="mt-10">
+                        <div class="flex items-center space-x-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_cd1a4a6f-69f2-4613-bf9b-c31aebf75535" alt="RM Capital Logo" class="h-14">
+                            <div>
+                                <p class="text-sm italic text-gray-400">"No Risk No Gain Is The Truth Of Life" – Chanakya</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="dark-card gold-border bg-opacity-80 backdrop-filter backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4 gold-text">Performance Highlights</h3>
+                        <p class="text-xl mb-6">
+                            Our average client earns <span class="gold-text font-bold">3–5% monthly returns</span> from their capital safely invested in our Short Strangle strategy.
+                        </p>
+                        <div class="bg-black bg-opacity-50 p-4 rounded-lg mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Consistent Returns</span>
+                                <span class="gold-text">★★★★★</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-black bg-opacity-50 p-4 rounded-lg mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Risk Management</span>
+                                <span class="gold-text">★★★★★</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-black bg-opacity-50 p-4 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Wealth Growth</span>
+                                <span class="gold-text">★★★★★</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section bg-black">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">About <span class="gold-text">RM Capital</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <div class="dark-card">
+                        <h3 class="text-2xl font-bold mb-6 strategy-box">Our Founder's Vision</h3>
+                        <p class="mb-6">
+                            RM Capital was founded by <span class="gold-text">Shaik Rafi</span>, a visionary trader and financial strategist from Pulivendula, Kadapa District, Andhra Pradesh, India.
+                        </p>
+                        <p class="mb-6">
+                            After years of studying market inefficiencies and testing various strategies, Rafi identified a powerful dual approach that minimizes risk while maximizing returns – combining the stability of the Indian markets with the high-growth potential of global forex trading.
+                        </p>
+                        <p>
+                            Today, RM Capital serves discerning businesspersons and entrepreneurs who seek passive wealth growth without the complexities of active trading, offering a premium wealth-building experience based on proven strategies.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-16 fade-in">
+                        <h3 class="text-2xl font-bold mb-6 strategy-box">Our Mission & Values</h3>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="dark-card gold-border">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                        <i class="fas fa-shield-alt text-black text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold">Capital Protection</h4>
+                                </div>
+                                <p class="text-gray-300">We prioritize the safety of your initial investment above all else.</p>
+                            </div>
+                            
+                            <div class="dark-card gold-border">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                        <i class="fas fa-chart-line text-black text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold">Consistent Growth</h4>
+                                </div>
+                                <p class="text-gray-300">We focus on steady, reliable returns rather than risky moon shots.</p>
+                            </div>
+                            
+                            <div class="dark-card gold-border">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                        <i class="fas fa-lightbulb text-black text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold">Innovation</h4>
+                                </div>
+                                <p class="text-gray-300">We continuously refine our strategies to adapt to changing market conditions.</p>
+                            </div>
+                            
+                            <div class="dark-card gold-border">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                        <i class="fas fa-handshake text-black text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold">Transparency</h4>
+                                </div>
+                                <p class="text-gray-300">You always know exactly how your capital is being deployed and grown.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-12">
+                    <div class="fade-in">
+                        <div class="quote-box">
+                            <p class="text-xl italic mb-2">"In investing, what is comfortable is rarely profitable."</p>
+                            <p class="text-right text-sm text-gray-400">- Robert Arnott</p>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in">
+                        <div class="quote-box">
+                            <p class="text-xl italic mb-2">"Opportunities come infrequently. When it rains gold, put out the bucket, not the thimble."</p>
+                            <p class="text-right text-sm text-gray-400">- Warren Buffett</p>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in">
+                        <div class="quote-box">
+                            <p class="text-xl italic mb-2">"If you don't find a way to make money while you sleep, you'll work until you die."</p>
+                            <p class="text-right text-sm text-gray-400">- Warren Buffett</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dark-card green-border fade-in">
+                        <h3 class="text-2xl font-bold mb-6 strategy-box">The RM Capital Team</h3>
+                        <p class="mb-4">Led by our founder, Shaik Rafi, our team consists of experienced traders, risk management specialists, and financial analysts working to protect and grow your capital.</p>
+                        <p>Each member is carefully selected for their expertise, integrity, and commitment to our clients' financial success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Strategy Section -->
+    <section id="strategy" class="section bg-gradient-to-b from-black to-gray-900">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="finance-symbol" style="top: 20%; right: 10%;">₹</div>
+        <div class="finance-symbol" style="bottom: 30%; left: 5%;">$</div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Our <span class="gold-text">Dual Strategy</span> Approach</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    RM Capital employs a sophisticated two-tier approach to wealth growth, maximizing returns while minimizing risk exposure.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10 mb-16">
+                <div class="dark-card gold-border relative fade-in">
+                    <div class="absolute -top-5 -left-5 w-16 h-16 rounded-full bg-black flex items-center justify-center border-4 border-gold-400">
+                        <span class="text-2xl font-bold gold-text">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 strategy-box pl-8">Primary Strategy: Option Selling</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-gold-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Short Strangle Strategy</h4>
+                                <p class="text-gray-300">We implement a carefully managed Short Strangle options strategy in your Demat account, selling both call and put options to collect premium income.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-gold-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Consistent Monthly Returns</h4>
+                                <p class="text-gray-300">This strategy generates reliable returns of 3-5% monthly, providing a stable foundation for wealth growth.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-gold-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Capital Preservation</h4>
+                                <p class="text-gray-300">Risk management is our priority, with strict position sizing and hedging techniques to protect your principal investment.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black bg-opacity-70 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-shield-alt mr-3 text-gold-400"></i>
+                                <h4 class="font-semibold">Risk Management Protocols</h4>
+                            </div>
+                            <ul class="space-y-2 pl-8 list-disc text-gray-300">
+                                <li>Strict position sizing (never over-leveraged)</li>
+                                <li>Strategic strike price selection based on technical analysis</li>
+                                <li>Continuous market monitoring</li>
+                                <li>Hedging techniques during high volatility</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dark-card green-border relative fade-in">
+                    <div class="absolute -top-5 -left-5 w-16 h-16 rounded-full bg-black flex items-center justify-center border-4 border-green-500">
+                        <span class="text-2xl font-bold green-text">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 strategy-box pl-8">Secondary Strategy: Forex Funded Trading</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Profit Reinvestment</h4>
+                                <p class="text-gray-300">A portion of profits generated from our option strategy is reinvested into forex funded accounts, accessing global currency markets.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Gold (XAU/USD) Trading</h4>
+                                <p class="text-gray-300">We focus primarily on Gold markets, applying technical analysis and systematic trading approaches to capture significant price movements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="mt-1 mr-4">
+                                <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2">Amplified Returns</h4>
+                                <p class="text-gray-300">This secondary strategy creates an additional income stream that further accelerates your wealth growth without risking your original capital.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black bg-opacity-70 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-globe mr-3 text-green-500"></i>
+                                <h4 class="font-semibold">Global Market Advantages</h4>
+                            </div>
+                            <ul class="space-y-2 pl-8 list-disc text-gray-300">
+                                <li>24-hour trading opportunities</li>
+                                <li>Greater liquidity and market depth</li>
+                                <li>Diversification beyond Indian markets</li>
+                                <li>Protection against domestic market downturns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dark-card fade-in">
+                <h3 class="text-2xl font-bold mb-8 strategy-box">How Our Dual Strategy Creates Compounding Growth</h3>
+                <div class="relative">
+                    <div class="timeline">
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4 class="font-bold text-xl mb-2 gold-text">Step 1: Capital Deployment</h4>
+                                <p>Your capital is deployed in your own Demat account for option selling (Short Strangle strategy), remaining under your control at all times.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4 class="font-bold text-xl mb-2 green-text">Step 2: Monthly Returns</h4>
+                                <p>The option strategy generates consistent 3-5% monthly returns from premium collection.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4 class="font-bold text-xl mb-2 gold-text">Step 3: Profit Allocation</h4>
+                                <p>Profits are split into three portions: Withdrawal for client use, Reinvestment into primary strategy, Investment into forex funded accounts.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4 class="font-bold text-xl mb-2 green-text">Step 4: Forex Trading</h4>
+                                <p>We trade Gold (XAU/USD) using a portion of profits, creating a secondary income stream without risking your principal.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4 class="font-bold text-xl mb-2 gold-text">Step 5: Compounding Growth</h4>
+                                <p>As both strategies generate returns, total wealth grows at an accelerated rate through strategic reinvestment and compounding.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Opportunities Section -->
+    <section id="opportunities" class="section bg-black">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Opportunities for <span class="gold-text">Clients</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    RM Capital is designed for discerning individuals who understand the value of professional financial management.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-8 strategy-box">Who Benefits from RM Capital</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-briefcase text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Business Owners</h4>
+                            </div>
+                            <p class="text-gray-300">Who want to put idle business capital to work without diverting attention from their core operations.</p>
+                        </div>
+                        
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-building text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Real Estate Developers</h4>
+                            </div>
+                            <p class="text-gray-300">Seeking to diversify income streams and generate monthly cash flow between property sales.</p>
+                        </div>
+                        
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-lightbulb text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Entrepreneurs</h4>
+                            </div>
+                            <p class="text-gray-300">Who understand risk-reward but lack the time to actively manage their investments.</p>
+                        </div>
+                        
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Traders</h4>
+                            </div>
+                            <p class="text-gray-300">Who understand markets but lack the emotional discipline or time for consistent execution.</p>
+                        </div>
+                        
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-hard-hat text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Contractors</h4>
+                            </div>
+                            <p class="text-gray-300">With irregular income flows looking to build sustainable, passive wealth.</p>
+                        </div>
+                        
+                        <div class="dark-card gold-border">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4">
+                                    <i class="fas fa-wallet text-black text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold">Investors</h4>
+                            </div>
+                            <p class="text-gray-300">Seeking better returns than traditional investments without excessive market exposure.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-8 strategy-box">What Our Clients Receive</h3>
+                    
+                    <div class="dark-card mb-8">
+                        <div class="flex mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-money-bill-wave text-black text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Passive Income Stream</h4>
+                                <p class="text-gray-300">Enjoy consistent monthly returns without active involvement. Your capital works for you while you focus on what matters most.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-chart-pie text-black text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Wealth Growth With Zero Effort</h4>
+                                <p class="text-gray-300">No need to research markets, manage trades, or monitor positions. Our professional team handles everything from strategy to execution.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-globe text-black text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Global Market Exposure</h4>
+                                <p class="text-gray-300">Benefit from both Indian and international markets, creating a diversified approach that reduces risk while maximizing growth potential.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dark-card green-border">
+                        <h4 class="text-xl font-bold mb-4">Client Success Metrics</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Monthly Returns</span>
+                                    <span class="gold-text">3-5%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Annual Compounded Growth</span>
+                                    <span class="gold-text">42-80%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Capital Security</span>
+                                    <span class="gold-text">99%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2 rounded-full" style="width: 99%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Client Satisfaction</span>
+                                    <span class="gold-text">98%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-yellow-300 to-yellow-600 h-2 rounded-full" style="width: 98%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gradient-to-b from-gray-900 to-black">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Contact <span class="gold-text">RM Capital</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Ready to start growing your wealth? Schedule a consultation with our team to discuss how our dual strategy can work for you.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="dark-card fade-in">
+                    <h3 class="text-2xl font-bold mb-8 strategy-box">Schedule a Call</h3>
+                    <div id="calendly" class="min-h-[500px]">
+                        <!-- Calendly inline widget begin -->
+                        <div class="calendly-inline-widget" data-url="https://calendly.com" style="min-width:320px;height:600px;"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        <!-- Calendly inline widget end -->
+                    </div>
+                </div>
+                
+                <div class="space-y-10">
+                    <div class="dark-card fade-in">
+                        <h3 class="text-2xl font-bold mb-8 strategy-box">Get in Touch</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
+                                <input type="text" id="name" class="custom-input w-full" placeholder="Enter your name" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-300">Phone Number</label>
+                                <input type="tel" id="phone" class="custom-input w-full" placeholder="Enter your phone number" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
+                                <input type="email" id="email" class="custom-input w-full" placeholder="Enter your email address" required>
+                            </div>
+                            <div>
+                                <label for="interest" class="block mb-2 text-sm font-medium text-gray-300">I'm interested in</label>
+                                <select id="interest" class="custom-input w-full">
+                                    <option value="both">Complete Dual Strategy</option>
+                                    <option value="options">Options Trading Only</option>
+                                    <option value="forex">Forex Trading Only</option>
+                                    <option value="learning">Learning More First</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Message (Optional)</label>
+                                <textarea id="message" rows="4" class="custom-input w-full" placeholder="Any specific questions or requirements?"></textarea>
+                            </div>
+                            <button type="submit" class="gold-gradient-btn w-full">Submit Inquiry</button>
+                        </form>
+                    </div>
+                    
+                    <div class="dark-card fade-in">
+                        <h3 class="text-2xl font-bold mb-6 strategy-box">Direct Contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-user text-black text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Founder</h4>
+                                    <p class="text-gray-300">Shaik Rafi</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone text-black text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Phone</h4>
+                                    <p class="text-gray-300">+91 8125023515</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-black text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Email</h4>
+                                    <p class="text-gray-300"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deacb3bdbfaeb7aabfb2f0b7b09eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-black text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Address</h4>
+                                    <p class="text-gray-300">Pulivendula, Kadapa District, Andhra Pradesh, India</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="https://wa.me/918125023515" class="w-full green-gradient-btn flex items-center justify-center" target="_blank">
+                                <i class="fab fa-whatsapp mr-2 text-xl"></i> WhatsApp Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="section bg-black">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Frequently Asked <span class="gold-text">Questions</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Get answers to the most common questions about our dual strategy approach.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="dark-card fade-in">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is my capital safe?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Your capital stays in your own Demat account at all times. We implement trading strategies in your account using our expertise, but you retain complete control over your funds. Our conservative risk management approach for the option selling strategy is designed to minimize potential drawdowns.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I withdraw my money anytime?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Yes, since the funds remain in your account, you have complete access at all times. We recommend a minimum commitment period of 6 months to see optimal results, but there are no lock-in periods or penalties for withdrawals.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Who trades on my behalf?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Our team of experienced options and forex traders, led by founder Shaik Rafi, executes the strategies. Each team member specializes in specific aspects of the dual approach, with extensive experience in Indian options markets and global forex trading.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What if the forex account fails funding?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                While this is rare given our systematic approach, if a funded forex account fails to meet requirements, we simply allocate a new portion of profits to secure another account. There's no risk to your original capital since we only use a percentage of previously generated profits for forex trading.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the risks?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                All investing carries some risk, but our strategies are designed to minimize exposure. The Short Strangle options strategy can face challenges during extreme market volatility, but our hedging protocols and position sizing minimize potential drawdowns. The forex component only risks profits already generated, never your original capital.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do I need trading knowledge?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                No, that's why you're hiring us. We handle all the technical aspects, market analysis, and trade execution. You'll receive regular reports explaining performance in clear terms, but the entire point of our service is to provide sophisticated trading without requiring you to become a trader yourself.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the minimum investment?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Our strategy works most effectively with a minimum capital of ₹10 lakhs, which allows for proper position sizing and risk management in the options component. For larger accounts above ₹50 lakhs, we offer customized approaches with additional diversification opportunities.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you get compensated?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                We operate on a performance fee model, taking a percentage of profits generated. This aligns our interests with yours - we only succeed when you succeed. The exact fee structure is discussed during your initial consultation and depends on account size and strategy customization.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do I get started?</span>
+                            <i class="fas fa-plus text-gold-400 faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Getting started is simple. Schedule a consultation through our website or contact us directly. We'll discuss your financial goals, explain our approach in detail, and outline the next steps. Once you're ready to proceed, we'll guide you through the account setup process and begin implementing our strategy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Legal Section -->
+    <section id="legal" class="section bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Legal <span class="gold-text">Information</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+            </div>
+            
+            <div class="dark-card fade-in">
+                <h3 class="text-2xl font-bold mb-6 strategy-box">Disclaimer</h3>
+                <div class="space-y-4 text-gray-300">
+                    <p>
+                        Trading in financial markets involves substantial risk and is not suitable for all investors. Past performance is not indicative of future results. The information provided by RM Capital is for educational and informational purposes only and should not be construed as financial advice.
+                    </p>
+                    <p>
+                        RM Capital does not offer SEBI-registered advisory services. We provide execution-based management services where trades are executed in clients' individual accounts. Clients retain full control over their accounts and funds at all times.
+                    </p>
+                    <p>
+                        Options trading involves risk and may not be suitable for all investors. Before deciding to trade options, you should carefully consider your investment objectives, level of experience, and risk appetite. You should be aware that you could sustain a loss of some or all of your initial investment.
+                    </p>
+                    <p>
+                        Foreign exchange trading carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade foreign exchange you should carefully consider your investment objectives, level of experience, and risk appetite.
+                    </p>
+                    <p>
+                        Client funds are not pooled. All trading activities are conducted in individual client accounts, with full transparency and client access at all times.
+                    </p>
+                    <p>
+                        The information contained herein is not intended to be a substitute for professional financial advice. Always seek the advice of a qualified financial advisor before making any investment decisions.
+                    </p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mt-10 mb-6 strategy-box">Terms of Service</h3>
+                <div class="space-y-4 text-gray-300">
+                    <p>
+                        By engaging with RM Capital, clients agree to our terms of service which include regular reporting, transparent fee structures, and clearly defined responsibilities. A detailed terms of service document will be provided during the onboarding process.
+                    </p>
+                    <p>
+                        RM Capital reserves the right to decline service to any potential client at our discretion. We selectively work with clients who share our philosophy toward wealth building and risk management.
+                    </p>
+                    <p>
+                        This website and its content are Copyright © 2023 RM Capital. All rights reserved. The RM Capital name and logo are trademarks of RM Capital.
+                    </p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mt-10 mb-6 strategy-box">Privacy Policy</h3>
+                <div class="space-y-4 text-gray-300">
+                    <p>
+                        RM Capital respects your privacy and is committed to protecting your personal data. We collect and process only the information necessary to provide our services, communicate with you, and comply with legal obligations.
+                    </p>
+                    <p>
+                        We do not sell, rent, or lease client information to third parties. Any information shared is done so only with trusted partners necessary for providing our services, and always with appropriate data protection agreements in place.
+                    </p>
+                    <p>
+                        For a complete privacy policy, please contact us directly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Insights Section -->
+    <section id="insights" class="section bg-black">
+        <div class="particles-container">
+            <!-- Gold dust particles will be inserted by JS -->
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Insights & <span class="gold-text">Education</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-400 to-green-500 mx-auto"></div>
+                <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Explore our latest articles on trading strategy, market insights, and wealth building principles.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="blog-card fade-in">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Options Trading Basics" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gold-400">Options Trading</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3">Understanding Short Strangle: Low-Risk Option Strategies</h3>
+                        <p class="text-gray-300 mb-4">Learn the fundamentals of the Short Strangle options strategy and how it generates consistent income with managed risk.</p>
+                        <a href="#" class="text-gold-400 inline-flex items-center">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card fade-in">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Forex Trading" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gold-400">Forex Trading</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3">Gold Trading: Navigating the XAU/USD Market</h3>
+                        <p class="text-gray-300 mb-4">Discover the unique characteristics of the gold market and how technical analysis can identify profitable trading opportunities.</p>
+                        <a href="#" class="text-gold-400 inline-flex items-center">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card fade-in">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wealth Building" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-gold-400">Wealth Strategy</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3">The Power of Compound Growth in Wealth Building</h3>
+                        <p class="text-gray-300 mb-4">How systematic reinvestment creates exponential wealth growth over time using our dual strategy approach.</p>
+                        <a href="#" class="text-gold-400 inline-flex items-center">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center fade-in">
+                <h3 class="text-2xl font-bold mb-8">Join Our Newsletter</h3>
+                <div class="max-w-md mx-auto">
+                    <form class="flex">
+                        <input type="email" class="custom-input rounded-l-lg rounded-r-none w-full" placeholder="Your email address">
+                        <button type="submit" class="gold-gradient-btn rounded-l-none rounded-r-lg">Subscribe</button>
+                    </form>
+                    <p class="text-sm text-gray-400 mt-4">
+                        Get weekly market insights and strategy updates delivered to your inbox.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-16 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10">
+                <div>
+                    <img src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_cd1a4a6f-69f2-4613-bf9b-c31aebf75535" alt="RM Capital Logo" class="h-16 mb-4">
+                    <p class="text-gray-400 text-sm mb-4">"No Risk No Gain Is The Truth Of Life" – Chanakya</p>
+                    <p class="text-gray-400 text-sm">
+                        RM Capital is a premium wealth-building platform specializing in dual-strategy trading for consistent, low-risk returns.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#home" class="hover:text-gold-400 transition duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-gold-400 transition duration-300">About Us</a></li>
+                        <li><a href="#strategy" class="hover:text-gold-400 transition duration-300">Our Strategy</a></li>
+                        <li><a href="#opportunities" class="hover:text-gold-400 transition duration-300">Opportunities</a></li>
+                        <li><a href="#contact" class="hover:text-gold-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Resources</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#faq" class="hover:text-gold-400 transition duration-300">FAQ</a></li>
+                        <li><a href="#legal" class="hover:text-gold-400 transition duration-300">Legal Information</a></li>
+                        <li><a href="#insights" class="hover:text-gold-400 transition duration-300">Insights & Blog</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition duration-300">Market Updates</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition duration-300">Education Center</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3 text-gold-400"></i>
+                            <span>+91 8125023515</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-gold-400"></i>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7c5dad4d6c7dec3d6db99ded9f7d0dad6dedb99d4d8da">[email&#160;protected]</a></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gold-400"></i>
+                            <span>Pulivendula, Kadapa District, Andhra Pradesh, India</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gold-400 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gold-400 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gold-400 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gold-400 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 RM Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Create gold dust particles
+        function createParticles() {
+            const containers = document.querySelectorAll('.particles-container');
+            
+            containers.forEach(container => {
+                // Clear any existing particles
+                container.innerHTML = '';
+                
+                // Create new particles
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    
+                    // Random size
+                    const size = Math.random() * 4 + 1;
+                    
+                    // Random animation duration
+                    const duration = Math.random() * 15 + 10;
+                    
+                    // Random animation delay
+                    const delay = Math.random() * 10;
+                    
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    container.appendChild(particle);
+                }
+            });
+        }
+        
+        // Scroll animation
+        function fadeInElements() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Navbar scroll effect
+        function navbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+            
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+        
+        // FAQ toggle
+        function setupFAQ() {
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const faqItem = toggle.closest('.faq-item');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        toggle.classList.remove('fa-minus');
+                        toggle.classList.add('fa-plus');
+                    } else {
+                        answer.style.display = 'block';
+                        toggle.classList.remove('fa-plus');
+                        toggle.classList.add('fa-minus');
+                    }
+                });
+            });
+        }
+        
+        // Initialize everything on load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            fadeInElements();
+            navbarScroll();
+            setupMobileMenu();
+            setupFAQ();
+            
+            // Add scroll event listeners
+            window.addEventListener('scroll', fadeInElements);
+            window.addEventListener('scroll', navbarScroll);
+        });
+        
+        // Re-create particles on window resize
+        window.addEventListener('resize', createParticles);
+    </script>
+</body>
+</html>

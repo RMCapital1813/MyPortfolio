@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>How RM Capital Helps Business Owners</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts: Poppins, Montserrat, Lora -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@google/fonts@3.3.1/css2?family=Poppins:wght@400;600;700&amp;family=Montserrat:wght@400;600&amp;family=Lora:wght@400;700&amp;display=swap">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+    <style>
+        html,
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Poppins', 'Montserrat', 'Lora', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-glow {
+            background: radial-gradient(ellipse at center, rgba(0, 100, 0, 0.45) 0%, rgba(0, 0, 0, 0.95) 85%);
+        }
+
+        .gold-bg {
+            background-color: #FFD700;
+        }
+
+        .gold-text {
+            color: #FFD700;
+        }
+
+        .gold-border {
+            border: 1.5px solid #FFD700;
+        }
+
+        .dark-green-bg {
+            background-color: #022010;
+        }
+
+        .dark-green-hover:hover {
+            background-color: #01441B;
+        }
+
+        .dark-green-text {
+            color: #006400;
+        }
+
+        .shadow-deep {
+            box-shadow: 0 4px 32px 0 rgba(0, 50, 20, 0.25);
+        }
+
+        .testimonial-section-bg {
+            background: repeating-linear-gradient(-45deg,
+                    #012710,
+                    #012710 10px,
+                    #011C0A 15px,
+                    #011C0A 20px);
+        }
+
+        /* Hide scrollbars for sections, let content flow for PDF */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .fa-gold {
+            color: #FFD700;
+        }
+
+        .fa-lg {
+            font-size: 1.7em;
+        }
+    </style>
+    <style>
+        .genspark-badge-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genspark-modal {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            justify-content: end;
+        }
+
+        .genspark-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .genspark-modal-content {
+                max-width: 90%;
+            }
+        }
+
+        .genspark-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .genspark-title {
+            margin-bottom: 8px;
+            font-weight: normal;
+            display: inline;
+            font-size: 14px;
+        }
+
+        .genspark-report {
+            color: #909499;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: inline;
+        }
+
+        .genspark-info {
+            margin: 25px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .genspark-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .genspark-remove-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .genspark-go-btn {
+            background-color: #222;
+            border: none;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <section class="gradient-glow py-20 px-4 text-center flex flex-col items-center justify-center shadow-deep">
+        <h1 class="text-4xl md:text-5xl font-bold mb-5 gold-text tracking-tight drop-shadow-xl"
+            style="font-family:'Montserrat', serif;">
+            Fuel Your Business Growth with RM Capital
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-200" style="font-family:'Lora',serif;">
+            Passive Wealth Creation for Entrepreneurs and Business Owners
+        </p>
+        <a href="#cta"
+            class="inline-block px-8 py-3 rounded-full font-semibold text-black gold-bg transition duration-200 shadow-lg gold-border hover:bg-[#006400] hover:text-[#FFD700] focus:outline-none text-lg"
+            style="font-family: 'Montserrat', sans-serif;">
+            Start Growing Your Capital
+        </a>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="max-w-3xl mx-auto py-16 px-4 text-center">
+        <p class="text-lg md:text-xl text-gray-300">
+            As a business owner, balancing cash flow, inflation risk, and growth opportunities is a constant challenge.
+            <br class="hidden md:inline">
+            <span class="block mt-4">
+                <span class="font-semibold dark-green-text">RM Capital</span> offers strategic financial solutions
+                designed to secure and grow your wealth while you stay focused on building your business.
+            </span>
+        </p>
+    </section>
+
+    <!-- Benefits Grid -->
+    <section class="max-w-6xl mx-auto py-10 px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-chart-line fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text" style="font-family: 'Montserrat', sans-serif;">
+                    Alternative Capital Growth</h3>
+                <p class="text-gray-300 text-base text-center">Access unique investment strategies beyond traditional
+                    options, designed for superior compounding.</p>
+            </div>
+            <!-- Card 2 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-layer-group fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text">Diversification of Risk</h3>
+                <p class="text-gray-300 text-base text-center">Spread your capital across proven asset classes and
+                    strategies, reducing risk for your business wealth.</p>
+            </div>
+            <!-- Card 3 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-coins fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text">Cash Flow Management</h3>
+                <p class="text-gray-300 text-base text-center">Enjoy regular income solutions and flexible withdrawals
+                    to keep your business liquid and prepared.</p>
+            </div>
+            <!-- Card 4 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-arrow-up-right-dots fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text">Higher Returns vs Traditional Investments</h3>
+                <p class="text-gray-300 text-base text-center">Benefit from strategies that consistently outperform
+                    standard bank and market returns.</p>
+            </div>
+            <!-- Card 5 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-user-clock fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text">No Active Management Required</h3>
+                <p class="text-gray-300 text-base text-center">Remove the hassle: our team manages the complexity while
+                    you enjoy passive growth.</p>
+            </div>
+            <!-- Card 6 -->
+            <div
+                class="gold-border rounded-2xl dark-green-bg p-7 flex flex-col items-center transition duration-200 shadow-deep hover:dark-green-hover">
+                <i class="fa-solid fa-sliders fa-gold fa-lg mb-3"></i>
+                <h3 class="font-semibold text-lg mb-2 gold-text">Customizable Plans for Different Business Needs</h3>
+                <p class="text-gray-300 text-base text-center">Every business is different. Access tailored investment
+                    plans fitting your unique situation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="max-w-5xl mx-auto py-16 px-4">
+        <div class="mb-10 text-center">
+            <h2 class="text-2xl md:text-3xl gold-text font-bold mb-2" style="font-family: 'Montserrat', sans-serif;">How
+                It Works</h2>
+        </div>
+        <div
+            class="flex flex-col space-y-0 md:space-y-0 md:flex-row md:justify-between md:items-start md:space-x-0 relative">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center md:w-1/4 mb-10 md:mb-0 relative z-10">
+                <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center bg-[#01441B] gold-border shadow-deep mb-4">
+                    <span class="gold-text text-2xl font-bold">1</span>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg gold-text font-semibold mb-1">Capital Allocation</h3>
+                    <p class="text-base text-gray-300">Allocate funds to your RM Capital account with flexible minimums.
+                    </p>
+                </div>
+            </div>
+            <!-- Connector -->
+            <div
+                class="hidden md:block absolute left-1/4 top-7 w-1/4 h-1.5 bg-gradient-to-r from-[#FFD700] to-[#006400] rounded-full z-0">
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center md:w-1/4 mb-10 md:mb-0 relative z-10">
+                <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center bg-[#01441B] gold-border shadow-deep mb-4">
+                    <span class="gold-text text-2xl font-bold">2</span>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg gold-text font-semibold mb-1">Options + Forex Hybrid Strategy</h3>
+                    <p class="text-base text-gray-300">Your capital is tactically managed using proprietary hybrid
+                        strategies to optimize returns.</p>
+                </div>
+            </div>
+            <!-- Connector -->
+            <div
+                class="hidden md:block absolute left-2/4 top-7 w-1/4 h-1.5 bg-gradient-to-r from-[#FFD700] to-[#006400] rounded-full z-0">
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center md:w-1/4 mb-10 md:mb-0 relative z-10">
+                <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center bg-[#01441B] gold-border shadow-deep mb-4">
+                    <span class="gold-text text-2xl font-bold">3</span>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg gold-text font-semibold mb-1">Monthly Growth Reports</h3>
+                    <p class="text-base text-gray-300">Stay informed with clear, concise, and regular performance and
+                        growth updates.</p>
+                </div>
+            </div>
+            <!-- Connector -->
+            <div
+                class="hidden md:block absolute left-3/4 top-7 w-1/4 h-1.5 bg-gradient-to-r from-[#FFD700] to-[#006400] rounded-full z-0">
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center md:w-1/4 relative z-10">
+                <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center bg-[#01441B] gold-border shadow-deep mb-4">
+                    <span class="gold-text text-2xl font-bold">4</span>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg gold-text font-semibold mb-1">Withdrawal or Reinvestment</h3>
+                    <p class="text-base text-gray-300">Choose to withdraw returns on a schedule or reinvest to build
+                        further compound growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial/Quote Section -->
+    <section class="testimonial-section-bg py-16 px-4 flex flex-col items-center">
+        <blockquote class="max-w-3xl mx-auto text-xl italic font-semibold lora gold-text text-center">
+            “Building a business is hard. Growing your wealth shouldn’t be. RM Capital makes it effortless.”
+        </blockquote>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="max-w-3xl mx-auto py-20 px-4 flex flex-col items-center" id="cta">
+        <h2 class="text-2xl md:text-3xl font-bold mb-5 gold-text text-center"
+            style="font-family: 'Montserrat', sans-serif;">
+            Ready to Elevate Your Wealth?
+        </h2>
+        <a href="#"
+            class="inline-block px-8 py-3 rounded-full font-semibold text-black gold-bg transition duration-200 shadow-lg gold-border hover:bg-[#006400] hover:text-[#FFD700] focus:outline-none text-lg"
+            style="font-family: 'Montserrat', sans-serif;">
+            Start Growing Your Capital
+        </a>
+    </section>
+
+    <!-- Spacer for smooth ending, especially for PDF -->
+    <div class="h-12"></div>
+</body>
+
+</html>
